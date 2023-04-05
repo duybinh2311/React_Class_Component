@@ -5,6 +5,9 @@ import Home from './Component/Home/Home'
 import DataBinding from './Component/DataBinding/DataBinding'
 import HandleEvent from './Component/HandleEvent/HandleEvent'
 import State from './Component/State/State'
+import StyleDemo from './Style/StyleDemo'
+import RenderWithMap from './Component/RenderWithMap/RenderWithMap'
+import './Style/index.scss'
 
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -14,6 +17,9 @@ root.render(
     {/* <Home /> */}
     {/* <DataBinding /> */}
     {/* <HandleEvent /> */}
-    <State />
+    {/* <State /> */}
+    {/* <StyleDemo /> */}
+    {/* <RenderWithMap/> */}
+    <h3 className="color-red">Hello</h3>
   </div>
 )
