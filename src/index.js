@@ -8,10 +8,12 @@ import State from './Component/State/State'
 import StyleDemo from './Style/StyleDemo'
 import RenderWithMap from './Component/RenderWithMap/RenderWithMap'
 import './Style/index.scss'
+import DemoProps from './Component/Props/DemoProps'
+import ProductList from './Component/Props/ProductList/ProductList'
+import ProductDetail from './Component/Props/ProductList/ProductDetail/ProductDetail'
 
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
-
 root.render(
   <div>
     {/* <Home /> */}
@@ -20,6 +22,8 @@ root.render(
     {/* <State /> */}
     {/* <StyleDemo /> */}
     {/* <RenderWithMap/> */}
-    <h3 className="color-red">Hello</h3>
+    {/* <DemoProps /> */}
+    {/* <ProductList /> */}
+    <ProductDetail/>
   </div>
 )
