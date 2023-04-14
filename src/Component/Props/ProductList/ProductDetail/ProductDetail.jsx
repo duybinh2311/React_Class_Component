@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Cart from './Cart'
+import Item from './Item'
+
 const dataPhone = [
   {
     maSP: 1,
@@ -40,37 +43,90 @@ const dataPhone = [
 export default class ProductDetail extends Component {
   state = {
     spChiTiet: {
-      maSP: 1,
-      tenSP: 'VinSmart Live',
-      manHinh: 'AMOLED, 6.2, Full HD+',
-      heDieuHanh: 'Android 9.0 (Pie)',
-      cameraTruoc: '20 MP',
-      cameraSau: 'Chính 48 MP & Phụ 8 MP, 5 MP',
+      maSP: 3,
+      tenSP: 'Iphone XS Max',
+      manHinh: 'OLED, 6.5, 1242 x 2688 Pixels',
+      heDieuHanh: 'iOS 12',
+      cameraSau: 'Chính 12 MP & Phụ 12 MP',
+      cameraTruoc: '7 MP',
       ram: '4 GB',
       rom: '64 GB',
-      giaBan: 5700000,
-      hinhAnh: './img/vsphone.jpg',
+      giaBan: 27000000,
+      hinhAnh: './img/applephone.jpg',
     },
+    arrGioHang: [
+      {
+        maSP: 3,
+        tenSP: 'Iphone XS Max',
+        giaBan: 27000000,
+        hinhAnh: './img/applephone.jpg',
+        soLuong: 2,
+      },
+    ],
+  }
+  /* state đặt ở component nào thì hàm setState viết ở component đó */
+  themGioHang = (spClick) => {
+    spClick = { ...spClick, soLuong: 1 }
+    //Kiểm tra sản phẩm đã có trong arr Giỏ hàng hay chưa ? Nếu có thì lấy ra tăng số lượng. Chưa có thì push vào
+    let gioHang = this.state.arrGioHang
+    let spGH = gioHang.find((item) => item.maSP === spClick.maSP)
+    if (spGH) {
+      spGH.soLuong += 1
+    } else {
+      gioHang.push(spClick)
+    }
+    //Gán lại state = state mới
+    this.setState({
+      arrGioHang: gioHang,
+    })
+  }
+  xoaSanPham = (maSP) => {
+    /* Dựa vào mã tìm index của sản phẩm cần xóa trong arrGioHang */
+    let index = this.state.arrGioHang.findIndex((item) => item.maSP === maSP)
+    if (index !== -1) {
+      this.state.arrGioHang.splice(index, 1)
+    }
+    /* Set lại giá trị mới cho state */
+    this.setState({
+      arrGioHang: this.state.arrGioHang,
+    })
+  }
+  tangGiamSoLuong = (maSP, soLuong) => {
+    /* Tìm ra sản phẩm được click dựa vào mã */
+    let sanpham = this.state.arrGioHang.find((sp) => sp.maSP === maSP)
+    if (sanpham && sanpham.soLuong > 0) {
+      sanpham.soLuong += soLuong 
+      if (sanpham.soLuong < 1) {
+        if (window.confirm('Bạn có muốn xóa không')) {
+          this.xoaSanPham(sanpham.maSP)
+          return
+        } else {
+          sanpham.soLuong -= soLuong 
+        }
+      }
+    }
+    /* Cập nhật state mới */
+    this.setState({
+      arrGioHang: this.state.arrGioHang,
+    })
   }
   renderProduct = () => {
-    return dataPhone.map((item) => {
+    return dataPhone.map((dienThoai) => {
       return (
-        <div className="card col-4" key={item.maSP}>
-          <img src={item.hinhAnh} alt="" height={'100%'} />
-          <div className="card-body">
-            <h3>{item.tenSP}</h3>
-            <p>{item.giaBan.toLocaleString()}</p>
-            <button
-              className="btn btn-success"
-              onClick={() => {
-                this.setState({ spChiTiet: item })
-              }}
-            >
-              Xem chi tiết
-            </button>
-          </div>
+        <div className="col-md-4 mt-2" key={dienThoai.maSP}>
+          <Item
+            phone={dienThoai}
+            xemChiTiet={this.xemChiTiet}
+            themGioHang={this.themGioHang}
+          />
         </div>
       )
+    })
+  }
+  xemChiTiet = (spClick) => {
+    console.log(spClick)
+    this.setState({
+      spChiTiet: spClick,
     })
   }
   render() {
@@ -86,6 +142,12 @@ export default class ProductDetail extends Component {
     } = this.state.spChiTiet
     return (
       <div className="container">
+        <h3>Giỏ hàng</h3>
+        <Cart
+          arrGioHang={this.state.arrGioHang}
+          xoaSanPham={this.xoaSanPham}
+          tangGiamSoLuong={this.tangGiamSoLuong}
+        />
         <h3>Danh sách sản phẩm</h3>
         <div className="row">{this.renderProduct()}</div>
         <br />

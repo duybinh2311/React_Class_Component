@@ -11,19 +11,42 @@ import './Style/index.scss'
 import DemoProps from './Component/Props/DemoProps'
 import ProductList from './Component/Props/ProductList/ProductList'
 import ProductDetail from './Component/Props/ProductList/ProductDetail/ProductDetail'
-
+/* Cấu hình React Router DOM */
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import HomeTemplate from './Component/HomeTemplate/HomeTemplate'
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <div>
-    {/* <Home /> */}
-    {/* <DataBinding /> */}
-    {/* <HandleEvent /> */}
-    {/* <State /> */}
-    {/* <StyleDemo /> */}
-    {/* <RenderWithMap/> */}
-    {/* <DemoProps /> */}
-    {/* <ProductList /> */}
-    <ProductDetail/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<HomeTemplate />}>
+          <Route index element={Home}></Route>
+          <Route path="/cart" element={<ProductDetail/>}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </div>
 )
+
+{
+  /* <HandleEvent /> */
+}
+{
+  /* <State /> */
+}
+{
+  /* <StyleDemo /> */
+}
+{
+  /* <RenderWithMap/> */
+}
+{
+  /* <DemoProps /> */
+}
+{
+  /* <ProductList /> */
+}
+{
+  /* <ProductDetail/> */
+}
