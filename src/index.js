@@ -12,8 +12,12 @@ import DemoProps from './Component/Props/DemoProps'
 import ProductList from './Component/Props/ProductList/ProductList'
 import ProductDetail from './Component/Props/ProductList/ProductDetail/ProductDetail'
 /* Cấu hình React Router DOM */
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import HomeTemplate from './Component/HomeTemplate/HomeTemplate'
+import BaiTapChonXe from './Component/State/BaiTapChonXe'
+import Login from './Component/Pages/Login'
+import Profile from './Component/Pages/Profile'
+import ReactFormDemo from './Component/ReactFormDemo/ReactFormDemo'
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -21,32 +25,15 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
-          <Route index element={Home}></Route>
-          <Route path="/cart" element={<ProductDetail/>}></Route>
+          <Route index element={<Home />}></Route>
+          <Route path="cart" element={<ProductDetail />}></Route>
+          <Route path="car" element={<BaiTapChonXe />}></Route>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="profile" element={<Profile />}></Route>
+          <Route path="react-form" element={<ReactFormDemo />}></Route>
+          <Route path="*" element={<Navigate to={''} />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
   </div>
 )
-
-{
-  /* <HandleEvent /> */
-}
-{
-  /* <State /> */
-}
-{
-  /* <StyleDemo /> */
-}
-{
-  /* <RenderWithMap/> */
-}
-{
-  /* <DemoProps /> */
-}
-{
-  /* <ProductList /> */
-}
-{
-  /* <ProductDetail/> */
-}

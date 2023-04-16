@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import Cart from '../Props/ProductList/ProductDetail/Cart'
 export default class HomeTemplate extends Component {
   render() {
@@ -7,18 +7,71 @@ export default class HomeTemplate extends Component {
       <div>
         <header className="header p-3 bg-dark text-white">
           <nav className="d-flex">
-            {/* <a href="/" className="text-white mx-2 nav-link">
+            <NavLink
+              to={''}
+              style={({ isActive }) => {
+                return { border: isActive ? 'solid orange 1px' : '' }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-dark mx-2 nav-link bg-white'
+                  : 'text-white bg-dark mx-2 nav-link'
+              }
+            >
               Home
-            </a>
-            <a href="cart" className="text-white mx-2 nav-link">
+            </NavLink>
+            <NavLink
+              to={'/cart'}
+              style={({ isActive }) => {
+                return { border: isActive ? 'solid orange 1px' : '' }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-dark mx-2 nav-link bg-white'
+                  : 'text-white bg-dark mx-2 nav-link'
+              }
+            >
               Cart
-            </a> */}
-            <Link to={''} className="text=white mx-2 nav-link">
-              Home
-            </Link>
-            <Link to={'/cart'} className="text=white mx-2 nav-link">
-              Cart
-            </Link>
+            </NavLink>
+            <NavLink
+              to={'/car'}
+              style={({ isActive }) => {
+                return { border: isActive ? 'solid 1px orange' : '' }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-dark mx-2 nav-link bg-white'
+                  : 'text-white bg-dark mx-2 nav-link'
+              }
+            >
+              Car
+            </NavLink>
+            <NavLink
+              to={'/login'}
+              style={({ isActive }) => {
+                return { border: isActive ? 'solid 1px orange' : '' }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-dark mx-2 nav-link bg-white'
+                  : 'text-white bg-dark mx-2 nav-link'
+              }
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to={'/react-form'}
+              style={({ isActive }) => {
+                return { border: isActive ? 'solid 1px orange' : '' }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-dark mx-2 nav-link bg-white'
+                  : 'text-white bg-dark mx-2 nav-link'
+              }
+            >
+              Form
+            </NavLink>
           </nav>
         </header>
         <main style={{ minHeight: 650 }}>
