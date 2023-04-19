@@ -72,6 +72,19 @@ export default class HomeTemplate extends Component {
             >
               Form
             </NavLink>
+            <NavLink
+              to={'/react-lifecycle'}
+              style={({ isActive }) => {
+                return { border: isActive ? 'solid 1px orange' : '' }
+              }}
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-dark mx-2 nav-link bg-white'
+                  : 'text-white bg-dark mx-2 nav-link'
+              }
+            >
+              React LifeCycle
+            </NavLink>
           </nav>
         </header>
         <main style={{ minHeight: 650 }}>

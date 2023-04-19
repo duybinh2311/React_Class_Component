@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, startTransition } from 'react'
 
 export default class CreateProduct extends Component {
   state = {
@@ -11,15 +11,23 @@ export default class CreateProduct extends Component {
       desc: '',
     },
     errors: {
-      idProduct: '',
-      name: '',
-      price: '',
-      img: '',
-      desc: '',
+      idProduct: '(*)',
+      name: '(*)',
+      price: '(*)',
+      img: '(*)',
+      desc: '(*)',
     },
   }
   handleSubmit = (event) => {
     event.preventDefault()
+    /* Kiểm tra nếu hợp lệ thì mới add product */
+    // Duyệt this.state.erros
+    for (let key in this.state.errors) {
+      if (this.state.errors[key] !== '') {
+        alert('Dữ liệu nhập vào không hợp lệ')
+        return
+      }
+    }
     // Call API
     let { addProduct } = this.props
     addProduct(this.state.values)
@@ -49,7 +57,7 @@ export default class CreateProduct extends Component {
             break
           }
           case 'string': {
-            let regexString = /^[a-zA-Z]+$/
+            let regexString = /^[a-z A-Z]+$/
             if (!regexString.test(value)) {
               messError = id + ' phải là ký tự !'
             }
@@ -60,15 +68,26 @@ export default class CreateProduct extends Component {
     }
     newErrors[id] = messError
 
-    this.setState(
-      {
-        values: newValues,
-        errors: newErrors,
-      },
-      () => console.log(this.state)
-    )
+    this.setState({
+      values: newValues,
+      errors: newErrors,
+    })
+  }
+  /* Can thiệp trước khi props mới truyền vào và render ra giao diện thì đem props gắn vào state */
+  // static getDerivedStateFromProps(newProps,currentState) {
+  //     if(newProps.productEdit.idProduct !== currentState.values.idProduct) {
+  //         //Bấm sửa
+  //         currentState.values = {...newProps.productEdit}
+  //         return currentState;
+  //     }
+  //     return null;
+  //   }
+  /* Chỉ chạy khi props thay đổi và chạy trước khi render (thường dùng cho việc gán props vào state) */
+  componentWillReceiveProps(newProps) {
+    this.setState({ values: newProps.productEdit })
   }
   render() {
+    let { idProduct, name, price, type, img, desc } = this.state.values
     return (
       <form className="card" onSubmit={this.handleSubmit}>
         <div className="card-header bg-dark text-white">Product Info</div>
@@ -82,6 +101,7 @@ export default class CreateProduct extends Component {
                   className="form-control"
                   id="idProduct"
                   onInput={this.handleChangeInput}
+                  value={idProduct}
                 />
                 <p className="text-danger">{this.state.errors.idProduct}</p>
               </div>
@@ -91,8 +111,8 @@ export default class CreateProduct extends Component {
                   name="name"
                   className="form-control"
                   id="name"
-                  data-type="string"
                   onInput={this.handleChangeInput}
+                  value={name}
                 />
                 <p className="text-danger">{this.state.errors.name}</p>
               </div>
@@ -104,6 +124,7 @@ export default class CreateProduct extends Component {
                   id="price"
                   data-type="number"
                   onInput={this.handleChangeInput}
+                  value={price}
                 />
                 <p className="text-danger">{this.state.errors.price}</p>
               </div>
@@ -116,6 +137,7 @@ export default class CreateProduct extends Component {
                   className="form-control"
                   id="img"
                   onInput={this.handleChangeInput}
+                  value={img}
                 />
                 <p className="text-danger">{this.state.errors.img}</p>
               </div>
@@ -126,11 +148,15 @@ export default class CreateProduct extends Component {
                   id="type"
                   name="type"
                   onInput={this.handleChangeInput}
+                  value={type}
                 >
                   <option value="phone">Phone</option>
                   <option value="table">Table</option>
                   <option value="laptop">Laptop</option>
                 </select>
+                <p className="text-danger" style={{ visibility: 'hidden' }}>
+                  {this.state.errors.desc}
+                </p>
               </div>
               <div className="form-group">
                 <p>Desc</p>
@@ -141,6 +167,7 @@ export default class CreateProduct extends Component {
                   data-maxlenght="32"
                   className="form-control"
                   onInput={this.handleChangeInput}
+                  value={desc}
                 />
                 <p className="text-danger">{this.state.errors.desc}</p>
               </div>
@@ -150,6 +177,18 @@ export default class CreateProduct extends Component {
         <div className="card-footer">
           <button className="btn btn-primary" type="submit">
             Create
+          </button>
+          <button
+            className="btn btn-success"
+            type="button"
+            onClick={() => {
+              // lấy hàm update từ component cha truyền vào
+              let { updateProduct } = this.props
+              // gửi ra dữ liệu sau khi thay đổi product
+              updateProduct(this.state.values)
+            }}
+          >
+            Update
           </button>
         </div>
       </form>

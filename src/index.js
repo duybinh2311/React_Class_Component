@@ -18,6 +18,7 @@ import BaiTapChonXe from './Component/State/BaiTapChonXe'
 import Login from './Component/Pages/Login'
 import Profile from './Component/Pages/Profile'
 import ReactFormDemo from './Component/ReactFormDemo/ReactFormDemo'
+import ReactLifeCycle from './Component/Pages/ReactLifeCycle/ReactLifeCycle'
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -31,6 +32,7 @@ root.render(
           <Route path="login" element={<Login />}></Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route path="react-form" element={<ReactFormDemo />}></Route>
+          <Route path="react-lifecycle" element={<ReactLifeCycle />}></Route>
           <Route path="*" element={<Navigate to={''} />}></Route>
         </Route>
       </Routes>
