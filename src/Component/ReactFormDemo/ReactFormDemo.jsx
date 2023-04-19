@@ -31,20 +31,16 @@ export default class ReactFormDemo extends Component {
   }
   delProduct = (idProductDel) => {
     console.log(idProductDel)
-    debugger
     let indexDel = this.state.arrProduct.findIndex(
       (prod) => prod.idProduct === idProductDel
     )
     if (indexDel !== -1) {
-      // this.state.arrProduct.splice(indexDel, 1)
-      this.setState({
-        arrProduct: this.state.arrProduct.splice(indexDel, 1),
-      })
+      this.state.arrProduct.splice(indexDel, 1)
     }
     /* Cuối cùng set state */
-    // this.setState({
-    //   arrProduct: this.state.arrProduct,
-    // })
+    this.setState({
+      arrProduct: this.state.arrProduct,
+    })
   }
   updateProduct = (newProduct) => {
     let prod = this.state.arrProduct.find(

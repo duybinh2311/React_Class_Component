@@ -22,12 +22,12 @@ export default class CreateProduct extends Component {
     event.preventDefault()
     /* Kiểm tra nếu hợp lệ thì mới add product */
     // Duyệt this.state.erros
-    for (let key in this.state.errors) {
-      if (this.state.errors[key] !== '') {
-        alert('Dữ liệu nhập vào không hợp lệ')
-        return
-      }
-    }
+    // for (let key in this.state.errors) {
+    //   if (this.state.errors[key] !== '') {
+    //     alert('Dữ liệu nhập vào không hợp lệ')
+    //     return
+    //   }
+    // }
     // Call API
     let { addProduct } = this.props
     addProduct(this.state.values)

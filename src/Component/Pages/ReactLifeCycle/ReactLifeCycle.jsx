@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import Child from './Child'
 /* 
-  Life Cycle: Vòng đời của 1 Component
-  + Mounting
-  + Updating
-  + Unmount
+  Life Cycle Map: Vòng đời của 1 Component
+  + Mounting (Quá trình component sinh ra trên UI)
+    - constructor (khởi tạo component)
+    - getDerivedStateFromProps (lấy giá trị mới của state)
+    - render (render component)
+    - componentDidMount (hoàn thành đưa component vào cây DOM, thực hiện các tác vụ nếu có)
+  + Updating (Quá trình component update trên UI)
+    - getDerivedStateFromProps (lấy giá trị mới của state)
+    - shouldComponentUpdate (so sánh giá trị props và state mới có khác giá trị props và state cũ không, nếu có thì sẽ gọi hàm render, mặc định trả về true)
+    - render (render component)
+    - componentDidUpdate (hoàn thành update component trên cây DOM, thực hiện các tác vụ nếu có)
+  + Unmount (Quá trình component biến mất trên UI)
+    - componentWillUnmount (clear đi các tác vụ chạy ngầm của component trước khi component này biến mất khỏi UI)
 */
 export default class ReactLifeCycle extends Component {
   /* Hàm khởi tạo của component, nhận vào các properties truyền vào component và khởi tạo thành một đối tượng props để quản lý các properties đó */
