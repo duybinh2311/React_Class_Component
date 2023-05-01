@@ -18,11 +18,17 @@ import BaiTapChonXe from './Component/State/BaiTapChonXe'
 import Login from './Component/Pages/Login'
 import Profile from './Component/Pages/Profile'
 import ReactFormDemo from './Component/ReactFormDemo/ReactFormDemo'
-import ReactLifeCycle from './Component/Pages/ReactLifeCycle/ReactLifeCycle'
+/* Cấu hình redux */
+import { Provider } from 'react-redux'
+import { store } from './redux/configStore'
+import DemoTangGiamSoLuong from './Component/ReduxDemo/DemoTangGiamSoLuong'
+import ReduxBaiTapChonXe from './Component/ReduxDemo/ReduxBaiTapChonXe'
+import ReduxFormNhanVien from './Component/ReduxDemo/ReduxFormNhanVien'
+import ReactLifeCycle from './Component/ReactLifeCycle/ReactLifeCycle'
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <div>
+  <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
@@ -33,9 +39,12 @@ root.render(
           <Route path="profile" element={<Profile />}></Route>
           <Route path="react-form" element={<ReactFormDemo />}></Route>
           <Route path="react-lifecycle" element={<ReactLifeCycle />}></Route>
+          <Route path="redux-demo1" element={<DemoTangGiamSoLuong />}></Route>
+          <Route path="redux-demo2" element={<ReduxBaiTapChonXe />}></Route>
+          <Route path="redux-demo3" element={<ReduxFormNhanVien />}></Route>
           <Route path="*" element={<Navigate to={''} />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
-  </div>
+  </Provider>
 )

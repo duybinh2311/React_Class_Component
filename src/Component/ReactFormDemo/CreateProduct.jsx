@@ -1,4 +1,4 @@
-import React, { Component, startTransition } from 'react'
+import React, { Component } from 'react'
 
 export default class CreateProduct extends Component {
   state = {

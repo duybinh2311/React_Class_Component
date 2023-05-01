@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import Cart from '../Props/ProductList/ProductDetail/Cart'
 export default class HomeTemplate extends Component {
   render() {
     return (
@@ -85,6 +84,29 @@ export default class HomeTemplate extends Component {
             >
               React LifeCycle
             </NavLink>
+            <div className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="dropdownId"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Redux
+              </a>
+              <div className="dropdown-menu" aria-labelledby="dropdownId">
+                <NavLink className="dropdown-item" to="/redux-demo1">
+                  Demo Tăng giảm SL
+                </NavLink>
+                <NavLink className="dropdown-item" to="/redux-demo2">
+                  Demo Chọn xe
+                </NavLink>
+                <NavLink className="dropdown-item" to="/redux-demo3">
+                  Demo Form Nhân Viên
+                </NavLink>
+              </div>
+            </div>
           </nav>
         </header>
         <main style={{ minHeight: 650 }}>
