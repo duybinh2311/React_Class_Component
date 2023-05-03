@@ -11,20 +11,22 @@ import './Style/index.scss'
 import DemoProps from './Component/Props/DemoProps'
 import ProductList from './Component/Props/ProductList/ProductList'
 import ProductDetail from './Component/Props/ProductList/ProductDetail/ProductDetail'
+
 /* Cấu hình React Router DOM */
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import HomeTemplate from './Component/HomeTemplate/HomeTemplate'
-import BaiTapChonXe from './Component/State/BaiTapChonXe'
 import Login from './Component/Pages/Login'
 import Profile from './Component/Pages/Profile'
 import ReactFormDemo from './Component/ReactFormDemo/ReactFormDemo'
-/* Cấu hình redux */
+import ReactLifeCycle from './Component/ReactLifeCycle/ReactLifeCycle'
+
+/* Cấu hình Redux */
 import { Provider } from 'react-redux'
 import { store } from './redux/configStore'
-import DemoTangGiamSoLuong from './Component/ReduxDemo/DemoTangGiamSoLuong'
-import ReduxBaiTapChonXe from './Component/ReduxDemo/ReduxBaiTapChonXe'
-import ReduxFormNhanVien from './Component/ReduxDemo/ReduxFormNhanVien'
-import ReactLifeCycle from './Component/ReactLifeCycle/ReactLifeCycle'
+import TangGiamSoLuong from './Component/ReduxDemo/TangGiamSoLuong'
+import BaiTapChonXe from './Component/ReduxDemo/BaiTapChonXe'
+import FormNhanVien from './Component/ReduxDemo/FormNhanVien'
+
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -32,16 +34,15 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
-          <Route index element={<Home />}></Route>
-          <Route path="cart" element={<ProductDetail />}></Route>
-          <Route path="car" element={<BaiTapChonXe />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="profile" element={<Profile />}></Route>
-          <Route path="react-form" element={<ReactFormDemo />}></Route>
-          <Route path="react-lifecycle" element={<ReactLifeCycle />}></Route>
-          <Route path="redux-demo1" element={<DemoTangGiamSoLuong />}></Route>
-          <Route path="redux-demo2" element={<ReduxBaiTapChonXe />}></Route>
-          <Route path="redux-demo3" element={<ReduxFormNhanVien />}></Route>
+          <Route index element={<Home />} />
+          <Route path="/product" element={<ProductDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/react-form" element={<ReactFormDemo />} />
+          <Route path="/react-lifecycle" element={<ReactLifeCycle />} />
+          <Route path="/redux-demo-1" element={<TangGiamSoLuong />} />
+          <Route path="/redux-demo-2" element={<BaiTapChonXe />} />
+          <Route path="/redux-demo-3" element={<FormNhanVien />} />
           <Route path="*" element={<Navigate to={''} />}></Route>
         </Route>
       </Routes>

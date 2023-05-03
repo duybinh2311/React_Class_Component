@@ -83,9 +83,9 @@ export default class CreateProduct extends Component {
   //     return null;
   //   }
   /* Chỉ chạy khi props thay đổi và chạy trước khi render (thường dùng cho việc gán props vào state) */
-  componentWillReceiveProps(newProps) {
-    this.setState({ values: newProps.productEdit })
-  }
+  // componentWillReceiveProps(newProps) {
+  //   this.setState({ values: newProps.productEdit })
+  // }
   render() {
     let { idProduct, name, price, type, img, desc } = this.state.values
     return (
@@ -193,5 +193,12 @@ export default class CreateProduct extends Component {
         </div>
       </form>
     )
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.productEdit !== this.props.productEdit) {
+      this.setState({
+        values: this.props.productEdit
+      })
+    }
   }
 }

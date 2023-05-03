@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class Info extends Component {
+export class Info extends Component {
   render() {
-    console.log(this.props)
-    let { nhanvienReducer } = this.props
     return (
       <div className="card">
-        <img src="https://i.pravatar.cc?u=5" alt="..." />
+        <img src="https://i.pravatar.cc?u=5" className="w-100" />
         <div className="card-body">
-          <h3>Họ tên: {nhanvienReducer.tenNhanVien}</h3>
-          <p>Mã nhân viên: {nhanvienReducer.maNhanVien}</p>
-          <p>Lương Căn bản: {nhanvienReducer.luongCoBan}$ </p>
+          <h3>Họ tên: {this.props.tenNhanVien}</h3>
+          <p>
+            Mã nhân viên: <b>{this.props.maNhanVien}</b>
+            <br />
+            Lương cơ bản: <b>{this.props.luongCoBan}$</b>
+          </p>
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => state
+const mapStateToProps = (state) => {
+  return state.nhanVienReducer
+}
 
-export default connect(mapStateToProps)(Info)
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Info)

@@ -1,52 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import FormNV from './FormNV'
+import Info from './Info'
 
-//Xoá export
-class FormNhanVien extends Component {
-  handleChangeInput = (event) => {
-    let { id, value } = event.target
-    const action = {
-      type: 'CHANGE_INFO',
-      payload: { id, value },
-    }
-    /* Đưa object id value lên redux */
-    this.props.dispatch(action)
-  }
+export class FormNhanVien extends Component {
   render() {
     return (
-      <form>
-        <h3>Thông tin nhân viên</h3>
-        <div className="form-group mt-3">
-          <input
-            className="form-control"
-            id="maNhanVien"
-            onInput={this.handleChangeInput}
-          />
+      <div className="container">
+        <h3 className="text-center">Form Nhân Viên</h3>
+        <div className="row">
+          <div className="col-6">
+            <FormNV />
+          </div>
+          <div className="col-6">
+            <Info />
+          </div>
         </div>
-        <div className="form-group mt-3">
-          <input
-            className="form-control"
-            id="tenNhanVien"
-            onInput={this.handleChangeInput}
-          />
-        </div>
-        <div className="form-group mt-3">
-          <input
-            className="form-control"
-            id="luongCoBan"
-            onInput={this.handleChangeInput}
-          />
-        </div>
-        <div className="form-group mt-3">
-          <button className="btn btn-success" type="submit">
-            Hiển thị
-          </button>
-        </div>
-      </form>
+      </div>
     )
   }
 }
 
-const mapStateToProps = (state) => state
+const mapStateToProps = (state) => ({})
 
-export default connect(mapStateToProps)(FormNhanVien)
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormNhanVien)

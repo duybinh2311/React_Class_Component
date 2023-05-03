@@ -1,39 +1,41 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { changeColor } from '../../redux/actions'
 
-class ReduxBaiTapChonXe extends Component {
+export class BaiTapChonXe extends Component {
   render() {
-    // state lấy được từ redux store sẽ được chuyển thành props của component
-    console.log(this.props)
     return (
-      <div className="container">
-        <h1>Bài tập chọn xe</h1>
+      <div className="container py-5">
         <div className="row">
           <div className="col-6">
             <img src={this.props.imgCar} className="w-100" />
           </div>
           <div className="col-6">
             <button
-              className="mx-2 btn text-white"
+              className="me-2 btn text-white"
               style={{ background: 'red' }}
+              onClick={() => this.props.changeColor('red')}
             >
               Red
             </button>
             <button
-              className="mx-2 btn text-white"
+              className="me-2 btn text-white"
               style={{ background: 'black' }}
+              onClick={() => this.props.changeColor('black')}
             >
               Black
             </button>
             <button
-              className="mx-2 btn text-white"
-              style={{ background: '#EEE' }}
+              className="me-2 btn text-white"
+              style={{ background: '#808080' }}
+              onClick={() => this.props.changeColor('steel')}
             >
               Steel
             </button>
             <button
-              className="mx-2 btn text-white"
+              className="me-2 btn text-white"
               style={{ background: 'silver' }}
+              onClick={() => this.props.changeColor('silver')}
             >
               Silver
             </button>
@@ -44,8 +46,10 @@ class ReduxBaiTapChonXe extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state
-}
+const mapStateToProps = (state) => ({
+  imgCar: state.imgCar,
+})
 
-export default connect(mapStateToProps)(ReduxBaiTapChonXe)
+const mapDispatchToProps = { changeColor }
+
+export default connect(mapStateToProps, mapDispatchToProps)(BaiTapChonXe)

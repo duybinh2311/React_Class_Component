@@ -8,32 +8,36 @@ export default class DemoProps extends Component {
   render() {
     const post1 = {
       tieuDe: 'CyberSoft và những người bạn',
-      noiDung: 'Xin chào các bác'
+      noiDung: 'Xin chào các bác',
     }
     const post2 = {
       tieuDe: 'Học react có khó không',
-      noiDung: 'Không hề dễ nha'
+      noiDung: 'Không hề dễ nha',
     }
     return (
       <div className="container">
         <h3>DemoProps</h3>
         <div className="w-25 mt-2">
-          <TextDemo name="CyberSoft" price='1000' img='./img/products/red-car.jpg'/>
+          <TextDemo
+            name="CyberSoft"
+            price="1000"
+            img="./img/products/red-car.jpg"
+          />
         </div>
         <div className="w-25 mt-2">
-          <TextDemo name="BC 43" price='2000' img='./img/products/black-car.jpg'/>
+          <TextDemo
+            name="BC 43"
+            price="2000"
+            img="./img/products/black-car.jpg"
+          />
         </div>
         <hr />
         <h3>Danh sách bài viết</h3>
-        <Post info={post1} TheBaiTap={BaiTapChonXe} >
-          <div className="alert alert-success">
-            ghi chú 1
-          </div>
+        <Post info={post1} TheBaiTap={BaiTapChonXe}>
+          <div className="alert alert-success">ghi chú 1</div>
         </Post>
-        <Post info={post2} TheBaiTap={DemoChangeFontSize} >
-        <div className="alert alert-warning">
-            ghi chú 2
-          </div>
+        <Post info={post2} TheBaiTap={DemoChangeFontSize}>
+          <div className="alert alert-warning">ghi chú 2</div>
         </Post>
       </div>
     )
