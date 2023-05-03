@@ -1,3 +1,5 @@
+import { createAction } from "@reduxjs/toolkit"
+
 export const tangSoLuong = () => {
   return {
     type: 'TANG_GIAM_SO_LUONG',
@@ -11,6 +13,12 @@ export const giamSoLuong = () => {
     payload: -1,
   }
 }
+
+export const tangSoLuongTest = createAction('TANG_GIAM_SO_LUONG', soLuong => {
+  return {
+    payload: soLuong
+  }
+})
 
 export const changeColor = (color) => {
   return {

@@ -15,10 +15,12 @@ import nhanVienReducer from './reducers/nhanVienReducer'
 
   Action (set state)
   - tự tạo (rxaction): bằng 1 hàm return về 1 object chứa 2 key type (string) và payload (object)
+  - createAction: là 1 hàm của reduxjs/toolkit, tham số đầu tiên sẽ là type, tham số thứ 2 là 1 hàm nhận vào giá trị của payload và return về 1 object có key payload chứa giá trị đó
   - createSlice (rxslice): createSlice sẽ tạo ra cả reducer và action, type trong object action được gửi lên sẽ có syntax 'nameReducer/nameAction' => 'nhanVienReducer/changeInfo'
 
   Reducer (state)
   - tự tạo (rxreducer): tạo ra reducer với state mặc định và xử lý tương ứng cho action gửi lên
+
 
   Lưu ý nếu không dùng createSlice thì không nên thay đổi trực tiếp store thông qua reducer, mà phải tạo ra bản sao mới để thay đổi
 
