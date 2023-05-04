@@ -75,6 +75,36 @@ export default class HomeTemplate extends Component {
               </NavLink>
             </div>
           </div>
+          <div className="dropdown">
+            <button
+              className="nav-link text-white dropdown-toggle"
+              type="button"
+              id="triggerId"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Redux
+            </button>
+            <div className="dropdown-menu" aria-labelledby="triggerId">
+              <NavLink className="dropdown-item" to={'/api'}>
+                API State
+              </NavLink>
+              <NavLink className="dropdown-item" to={'/api-redux'}>
+                API - Redux State
+              </NavLink>
+            </div>
+          </div>
+          <NavLink
+            className={({ isActive }) =>
+              `mx-2 nav-link w-auto ms-auto  ${
+                isActive ? `text-black bg-white` : `text-white`
+              }`
+            }
+            to={'/cart-page'}
+          >
+            <i className="fa fa-cart-plus"></i>
+          </NavLink>
         </nav>
         <main style={{ minHeight: 650 }}>
           <Outlet />

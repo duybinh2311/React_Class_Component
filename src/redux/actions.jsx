@@ -1,4 +1,4 @@
-import { createAction } from "@reduxjs/toolkit"
+import { createAction } from '@reduxjs/toolkit'
 
 export const tangSoLuong = () => {
   return {
@@ -14,9 +14,9 @@ export const giamSoLuong = () => {
   }
 }
 
-export const tangSoLuongTest = createAction('TANG_GIAM_SO_LUONG', soLuong => {
+export const tangSoLuongTest = createAction('TANG_GIAM_SO_LUONG', (soLuong) => {
   return {
-    payload: soLuong
+    payload: soLuong,
   }
 })
 

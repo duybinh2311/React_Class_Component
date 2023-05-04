@@ -74,14 +74,14 @@ export default class CreateProduct extends Component {
     })
   }
   /* Can thiệp trước khi props mới truyền vào và render ra giao diện thì đem props gắn vào state */
-  // static getDerivedStateFromProps(newProps,currentState) {
-  //     if(newProps.productEdit.idProduct !== currentState.values.idProduct) {
-  //         //Bấm sửa
-  //         currentState.values = {...newProps.productEdit}
-  //         return currentState;
-  //     }
-  //     return null;
+  // static getDerivedStateFromProps(newProps, currentState) {
+  //   if (newProps.productEdit.idProduct !== currentState.values.idProduct) {
+  //     //Bấm sửa
+  //     currentState.values = { ...newProps.productEdit }
+  //     return currentState
   //   }
+  //   return null
+  // }
   /* Chỉ chạy khi props thay đổi và chạy trước khi render (thường dùng cho việc gán props vào state) */
   // componentWillReceiveProps(newProps) {
   //   this.setState({ values: newProps.productEdit })
@@ -197,7 +197,7 @@ export default class CreateProduct extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.productEdit !== this.props.productEdit) {
       this.setState({
-        values: this.props.productEdit
+        values: {...this.props.productEdit},
       })
     }
   }

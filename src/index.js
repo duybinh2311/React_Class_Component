@@ -26,6 +26,10 @@ import { store } from './redux/configStore'
 import TangGiamSoLuong from './Component/ReduxDemo/TangGiamSoLuong'
 import BaiTapChonXe from './Component/ReduxDemo/BaiTapChonXe'
 import FormNhanVien from './Component/ReduxDemo/FormNhanVien'
+import HomePage from './Component/ReduxDemo/ShopDemo/HomePage'
+import CartPage from './Component/ReduxDemo/ShopDemo/CartPage'
+import RequestAPI from './Component/RequestAPI/RequestAPI'
+import RequestAPIRedux from './Component/RequestAPI/RequestAPIRedux'
 
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -34,7 +38,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
-          <Route index element={<Home />} />
+          <Route index element={<HomePage />} />
           <Route path="/product" element={<ProductDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
@@ -43,6 +47,10 @@ root.render(
           <Route path="/redux-demo-1" element={<TangGiamSoLuong />} />
           <Route path="/redux-demo-2" element={<BaiTapChonXe />} />
           <Route path="/redux-demo-3" element={<FormNhanVien />} />
+          <Route path="/home-page" element={<HomePage />} />
+          <Route path="/cart-page" element={<CartPage />} />
+          <Route path="/api" element={<RequestAPI />} />
+          <Route path="/api-redux" element={<RequestAPIRedux />} />
           <Route path="*" element={<Navigate to={''} />}></Route>
         </Route>
       </Routes>

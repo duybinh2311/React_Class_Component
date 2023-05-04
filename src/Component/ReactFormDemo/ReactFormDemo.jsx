@@ -12,6 +12,22 @@ export default class ReactFormDemo extends Component {
         img: 'https://i.pravatar.cc?u=1',
         desc: 'Điện thoại iphonex',
       },
+      {
+        idProduct: '02',
+        name: 'Iphone 11',
+        price: 1000,
+        type: 'Phone',
+        img: 'https://i.pravatar.cc?u=1',
+        desc: 'Điện thoại iphonex',
+      },
+      {
+        idProduct: '03',
+        name: 'Iphone 12',
+        price: 1000,
+        type: 'Phone',
+        img: 'https://i.pravatar.cc?u=1',
+        desc: 'Điện thoại iphonex',
+      },
     ],
     productEdit: {
       idProduct: '',
@@ -23,14 +39,12 @@ export default class ReactFormDemo extends Component {
     },
   }
   addProduct = (prodInfo) => {
-    console.log(prodInfo)
     this.state.arrProduct.push(prodInfo)
     this.setState({
       arrProduct: this.state.arrProduct,
     })
   }
   delProduct = (idProductDel) => {
-    console.log(idProductDel)
     let indexDel = this.state.arrProduct.findIndex(
       (prod) => prod.idProduct === idProductDel
     )
