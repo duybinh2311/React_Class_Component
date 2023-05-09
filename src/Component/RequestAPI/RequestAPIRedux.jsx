@@ -1,26 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  getDataProduct,
-  getAllProduct,
-} from '../../redux/reducers/productReducer'
+import { getAllProductAPI, getAllProduct } from 'reducers/productReducer'
 
 export class RequestAPIRedux extends Component {
   render() {
     return (
-      <div className="container">
-        <button
-          className="btn btn-success"
-          onClick={() =>
-            getAllProduct().then((data) => {
-              this.props.getDataProduct(data)
-            })
-          }
-        >
-          Get data API
-        </button>
-        <h3 className="text-center mt-3">Shoes Shop</h3>
-        <div className="row">
+      <div className="container py-5">
+        <h3 className="text-center  ">Shoes Shop</h3>
+        <div className="row g-3">
           {this.props.arrProduct.map((prod) => {
             return (
               <div className="col-4" key={prod.id}>
@@ -28,7 +15,7 @@ export class RequestAPIRedux extends Component {
                   <img src={prod.image} alt="" />
                   <div className="card-body">
                     <h3>{prod.name}</h3>
-                    <p>{prod.price} $</p>
+                    <p>{prod.price}$</p>
                     <button className="btn btn-dark">
                       <i className="fa fa-cart-plus"></i>
                       Add to cart
@@ -43,8 +30,8 @@ export class RequestAPIRedux extends Component {
     )
   }
   componentDidMount() {
-    getAllProduct().then((data) => {
-      this.props.getDataProduct(data)
+    getAllProductAPI().then((data) => {
+      this.props.getAllProduct(data)
     })
   }
 }
@@ -53,6 +40,6 @@ const mapStateToProps = (state) => ({
   arrProduct: state.productReducer.arrProduct,
 })
 
-const mapDispatchToProps = { getDataProduct }
+const mapDispatchToProps = { getAllProduct }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestAPIRedux)

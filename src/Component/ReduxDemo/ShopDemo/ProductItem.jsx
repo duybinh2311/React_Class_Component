@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addCartItem } from '../../../redux/reducers/cartItemReducer'
+import { addCartItem } from '@/redux/reducers/cartReducer'
 
 export class ProductItem extends Component {
   render() {
@@ -9,7 +9,15 @@ export class ProductItem extends Component {
       <div className="card">
         <img src={product.image} className="w-100" />
         <div className="card-body">
-          <h3>{product.name}</h3>
+          <h3
+            style={{
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {product.name}
+          </h3>
           <p>{product.price}</p>
           <button
             onClick={() => {

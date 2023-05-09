@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { tangSoLuong, giamSoLuong, tangSoLuongTest } from '../../redux/actions'
+import { tangSoLuong, giamSoLuong } from '../../redux/actions'
 
 class TangGiamSoLuong extends Component {
   render() {
@@ -9,7 +9,7 @@ class TangGiamSoLuong extends Component {
         <h1>Number: {this.props.number}</h1>
         <button
           onClick={() => {
-            this.props.tangSoLuongTest(1)
+            this.props.tangSoLuong(1)
           }}
           className="btn btn-primary me-2"
           style={{ width: 40 }}
@@ -34,5 +34,5 @@ const mapStateToProps = (state) => {
     number: state.number,
   }
 }
-const mapDispatchToProps = { tangSoLuong, giamSoLuong, tangSoLuongTest }
+const mapDispatchToProps = { giamSoLuong, tangSoLuong }
 export default connect(mapStateToProps, mapDispatchToProps)(TangGiamSoLuong)

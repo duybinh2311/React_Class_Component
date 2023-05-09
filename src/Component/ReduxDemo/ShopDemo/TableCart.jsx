@@ -1,29 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { AbortedDeferredError } from 'react-router-dom'
+import {
+  deleteCartItem,
+  increaseQuantity,
+  decreaseQuantity,
+} from 'reducers/cartReducer'
 
 export class TableCart extends Component {
-  renderTableCart = () => {
-    const { cartItemReducer } = this.props
-    return cartItemReducer.map((item) => {
-      return (
-        <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>
-            <img src={item.image} style={{ width: 50 }} />
-          </td>
-          <td>{item.name}</td>
-          <td>{item.price}</td>
-          <td>Quantity</td>
-          <td>Total</td>
-          <td>
-            <button className="btn btn-danger">X</button>
-          </td>
-        </tr>
-      )
-    })
-  }
   render() {
-    console.log(this.props.cartItemReducer)
     return (
       <table className="table">
         <thead>
@@ -37,16 +22,68 @@ export class TableCart extends Component {
             <th></th>
           </tr>
         </thead>
-        <tbody>{this.renderTableCart()}</tbody>
+        <tbody>
+          {this.props.cart.map((item, index) => {
+            return (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>
+                  <img src={item.image} style={{ width: 50 }} />
+                </td>
+                <td>{item.name}</td>
+                <td>{item.price}</td>
+                <td>
+                  <div className="btn-group">
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        this.props.decreaseQuantity(index)
+                      }}
+                    >
+                      -
+                    </button>
+                    <button className="btn btn-outline-primary disabled">
+                      {item.quantity}
+                    </button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        this.props.increaseQuantity(index)
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                </td>
+                <td>{(item.price * item.quantity).toLocaleString()}</td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      this.props.deleteCartItem(index)
+                    }}
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
       </table>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  cartItemReducer: state.cartItemReducer,
-})
-
-const mapDispatchToProps = {}
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cartReducer.cart,
+  }
+}
+const mapDispatchToProps = {
+  deleteCartItem,
+  increaseQuantity,
+  decreaseQuantity,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableCart)

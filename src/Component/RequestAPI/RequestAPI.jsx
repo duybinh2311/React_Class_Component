@@ -1,12 +1,12 @@
+import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 
 export class RequestAPI extends Component {
   state = {
     arrProduct: [],
   }
-  getAllProduct = () => {
+  getAllProductAPI = () => {
     axios
       .get('https://shop.cyberlearn.vn/api/Product')
       .then((result) => {
@@ -15,21 +15,22 @@ export class RequestAPI extends Component {
         })
       })
       .catch((error) => {
-        console.log(error)
+        throw error
       })
   }
-
   render() {
     return (
-      <div className="container">
+      <div className="container py-5">
         <button
           className="btn btn-success"
-          onClick={() => this.getAllProduct()}
+          onClick={() => {
+            this.getAllProductAPI()
+          }}
         >
-          Get data API
+          Get Data API
         </button>
-        <h3 className="text-center mt-3">Shoes Shop</h3>
-        <div className="row">
+        <h3 className="text-center">Shoes Shop</h3>
+        <div className="row g-3">
           {this.state.arrProduct.map((prod) => {
             return (
               <div className="col-4" key={prod.id}>
@@ -37,7 +38,7 @@ export class RequestAPI extends Component {
                   <img src={prod.image} alt="" />
                   <div className="card-body">
                     <h3>{prod.name}</h3>
-                    <p>{prod.price} $</p>
+                    <p>{prod.price}$</p>
                     <button className="btn btn-dark">
                       <i className="fa fa-cart-plus"></i>
                       Add to cart
@@ -52,7 +53,7 @@ export class RequestAPI extends Component {
     )
   }
   componentDidMount() {
-    this.getAllProduct()
+    this.getAllProductAPI()
   }
 }
 

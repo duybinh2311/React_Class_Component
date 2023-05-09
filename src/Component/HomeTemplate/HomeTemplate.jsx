@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class HomeTemplate extends Component {
+export class HomeTemplate extends Component {
   render() {
     return (
       <div>
@@ -103,10 +104,16 @@ export default class HomeTemplate extends Component {
             }
             to={'/cart-page'}
           >
-            <i className="fa fa-cart-plus"></i>
+            <i className="fa fa-cart-plus"></i> {this.props.cart.length} -{' '}
+            {this.props.cart
+              .reduce((total, item) => {
+                total += item.quantity * item.price
+                return total
+              }, 0)
+              .toLocaleString()}
           </NavLink>
         </nav>
-        <main style={{ minHeight: 650 }}>
+        <main style={{ minHeight: 770 }}>
           <Outlet />
         </main>
         <footer className="bg-dark text-white p-3 text-center">
@@ -116,3 +123,9 @@ export default class HomeTemplate extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return state.cartReducer
+}
+
+export default connect(mapStateToProps)(HomeTemplate)
