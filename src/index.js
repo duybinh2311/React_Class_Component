@@ -30,12 +30,14 @@ import HomePage from './Component/ReduxDemo/ShopDemo/HomePage'
 import CartPage from './Component/ReduxDemo/ShopDemo/CartPage'
 import RequestAPI from './Component/RequestAPI/RequestAPI'
 import RequestAPIRedux from './Component/RequestAPI/RequestAPIRedux'
+import { Toaster } from 'react-hot-toast'
 
 /* Nội dung toàn bộ website sẽ được chứa trong hàm render */
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>
     <BrowserRouter>
+      <Toaster position='top-right'/>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
           <Route index element={<HomePage />} />
