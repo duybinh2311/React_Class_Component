@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { tangSoLuong, giamSoLuong } from '../../redux/actions'
+import { store } from '@/redux/configStore'
 
 class TangGiamSoLuong extends Component {
   render() {
